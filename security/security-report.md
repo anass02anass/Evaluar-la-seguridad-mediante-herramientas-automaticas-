@@ -29,29 +29,26 @@ Para poder observar las alertas de las herramientas, se modificó la aplicación
 npm audit
 ```
 
-**Resultado obtenido (real):**
-```
-8 vulnerabilities (2 low, 5 high, 1 critical)
+**Resultado obtenido (real - Github code Scanning ) :**
+**CRITICAL  Code injection
+  File: app-vulnerable/src/index.js, Line 30
+  eval() with user-controlled input → Remote Code Execution
 
-lodash  <=4.17.23
-Severity: critical
-- Prototype Pollution in lodash - GHSA-fvqr-27wr-82fm
-- Command Injection in lodash - GHSA-35jh-r3h4-6jhm
-- Prototype Pollution in lodash - GHSA-4xc9-xhrj-v574
-- Prototype Pollution in lodash - GHSA-jf85-cpcp-j695
-- Regular Expression Denial of Service (ReDoS) in lodash - GHSA-29mw-wpgm-hmr9
-- lodash vulnerable to Code Injection via _.template - GHSA-r5fr-rjxr-66jc
+**HIGH  Database query built from user-controlled sources
+  File: app-vulnerable/src/routes/todos.js, Line 15
+  req.query.filter → string concatenation → db.all() → SQL Injection
 
-tar  <=7.5.10
-Severity: high
-- node-tar Vulnerable to Arbitrary File Creation/Overwrite - GHSA-34x7-hfp2-rc4v
-- Arbitrary File Read/Write via Hardlink Target Escape - GHSA-83g3-92jg-28cx
-- node-tar Symlink Path Traversal - GHSA-9ppj-qmqm-q256
-```
+**HIGH  Missing rate limiting (×4)
+  File: app-vulnerable/src/routes/todos.js, Lines 11, 21, 30, 40
+  Endpoints sin protección contra ataques de fuerza bruta o DoS
+
+
+![alt text](image.png)
 
 **Análisis:** La versión `lodash@4.17.4` tiene vulnerabilidades críticas de Prototype Pollution y Command Injection. Cualquier aplicación que use `_.template()` con datos del usuario podría ejecutar código arbitrario. La solución es actualizar a `lodash@4.18.1` o superior.
 
 ---
+
 
 ## Herramienta 2 — ESLint + eslint-plugin-security (SAST: análisis estático)
 
