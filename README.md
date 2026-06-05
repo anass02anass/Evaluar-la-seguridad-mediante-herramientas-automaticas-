@@ -67,21 +67,4 @@ Esta actividad corresponde a la **Fase 5 — Pruebas** del S-SDLC descrito en la
 
 Si cualquier herramienta detecta una vulnerabilidad de severidad alta o crítica, el merge queda bloqueado automáticamente.
 
----
 
-## Estructura del repositorio
-
-```
-todo-app-security-audit/
-├── app-vulnerable/              # Versión con vulnerabilidades intencionadas
-│   ├── src/
-│   │   ├── index.js             # Sin helmet, eval(), secretos hardcodeados
-│   │   ├── routes/todos.js      # SQL Injection, sin validación
-│   │   └── db/database.js
-│   ├── package.json             # lodash@4.17.4 (CVEs conocidos)
-│   └── .eslintrc.json
-├── security/
-│   └── security-report.md      # Informe completo con resultados de las 5 herramientas
-└── .github/workflows/
-    └── codeql.yml               # GitHub CodeQL automático
-```
