@@ -1,0 +1,9 @@
+{
+  "env": { "node": true, "es2021": true },
+  "plugins": ["security"],
+  "rules": {
+    "no-eval": "error",
+    "security/detect-eval-with-expression": "error",
+    "security/detect-possible-timing-attacks": "warn"
+  }
+}
