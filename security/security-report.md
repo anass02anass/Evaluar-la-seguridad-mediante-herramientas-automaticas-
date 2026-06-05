@@ -1,6 +1,4 @@
 # Informe de Seguridad — Todo App Security Audit
-
-**Fecha:** 2026-06-05  
 **Proyecto:** Todo App (versión vulnerable intencionada)  
 **Objetivo:** Demostrar el uso de 5 herramientas de análisis de seguridad
 
